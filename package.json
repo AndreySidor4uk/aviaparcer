@@ -1,0 +1,23 @@
+{
+  "name": "aviaparcer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Sidorchuk",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "prettier": "2.7.1",
+    "prisma": "^4.2.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.2.0",
+    "dotenv": "^16.0.1",
+    "undici": "^5.8.2",
+    "yargs": "^17.5.1"
+  }
+}
