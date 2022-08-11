@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model City {
+  id           String  @id
+  name         String
+  timeZone     String
+  countryCode  String
+  origins      Track[] @relation("origin")
+  destinations Track[] @relation("destinations")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  name       String
+  telegramId BigInt?
+  tracks     Track[]
+}
+
+model Track {
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime  @default(now())
+  user          User      @relation(references: [id], fields: [userId], onDelete: Cascade)
+  userId        Int
+  origin        City      @relation("origin", fields: [originId], references: [id])
+  originId      String
+  destination   City?     @relation("destinations", fields: [destinationId], references: [id])
+  destinationId String
+  departureAt  DateTime
+  returnAt     DateTime?
+  direct        Boolean   @default(true)
+  prices        Price[]
+  notify        Boolean   @default(false)
+  priceNotify   Int?
+  enabled       Boolean   @default(true)
+}
+
+model Price {
+  id        Int      @id @default(autoincrement())
+  datePrice DateTime @default(now())
+  track     Track    @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  trackId   Int
+  price     Int
+}
