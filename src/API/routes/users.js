@@ -1,7 +1,7 @@
 const { prisma } = require("../../prisma");
 
 module.exports = async function (api, options) {
-    const BASE_URL = "/user";
+    const BASE_URL = "/users";
     const qry = prisma.user;
 
     async function stringify(data) {
@@ -41,11 +41,13 @@ module.exports = async function (api, options) {
     });
 
     api.post(BASE_URL, async (req) => {
-        const { name, telegramId } = req.query;
+        const { name, telegramId } = req.body;
 
         const result = await qry.create({
-            name,
-            telegramId,
+            data: {
+                name,
+                telegramId: telegramId,
+            },
         });
         return await stringify(result);
     });

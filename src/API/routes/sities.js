@@ -1,7 +1,7 @@
 const { prisma } = require("../../prisma");
 
 module.exports = async function (api, options) {
-    const BASE_URL = "/city";
+    const BASE_URL = "/sities";
     const qry = prisma.city;
 
     api.get(BASE_URL, async (req) => {
@@ -40,9 +40,11 @@ module.exports = async function (api, options) {
         const { name, timeZone, countryCode } = req.body;
 
         return await qry.create({
-            name,
-            timeZone,
-            countryCode,
+            data: {
+                name,
+                timeZone,
+                countryCode,
+            },
         });
     });
 
