@@ -4,24 +4,24 @@
 
 ### Установка
 1. Скопировать репозиторий на локальный компьютер
-`git clone https://github.com/AndreySidor4uk/aviaparcer.git`
+```git clone https://github.com/AndreySidor4uk/aviaparcer.git```
 2. Перейти в каталог проекта
-`cd aviaparcer`
+```cd aviaparcer```
 3. Установить зависимости 
-`npm install`
+```npm install```
 4. Создать файл **.env** с переменными окружения
 ```
 DATABASE_URL="file:./prod.db"
 TELEGRAM_BOT_TOKEN={токен телеграм бота для уведомлений}    
 ```
 5. Создать базу данных 
-`npx prisma db push`
+```npx prisma db push```
 6. Инициализировать начальные значения БД
-`node .\src\index.js initdb`
+```node .\src\index.js initdb```
 
 ### Запуск админки
 Запуск админки, где можно будет добавить нужные напаравленя:
-`npx prisma studio`
+```npx prisma studio```
 
 После запуска админки надо добавить запись в таблицу **User**, с заполнением имени и **telegramid** пользователя телеграм(нужно для уведомлений).
 
@@ -29,4 +29,4 @@ TELEGRAM_BOT_TOKEN={токен телеграм бота для уведомле
 
 ### Запуск парсера
 Для запуска отслеживания: 
-`node .\src\index.js polling`
+```node .\src\index.js polling```
